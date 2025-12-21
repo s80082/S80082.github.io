@@ -34,11 +34,11 @@
             min-height: 100vh;
         }
 
-        /* --- Bento Grid Layout (Rule 2: Responsive Grid) --- */
+        /* --- Bento Grid Layout --- */
         .bento-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            grid-auto-rows: 150px; /* Base row height for modularity */
+            grid-auto-rows: 150px; 
             gap: var(--grid-gap);
             max-width: 1200px; 
             margin: 0 auto;
@@ -63,8 +63,6 @@
         }
 
         /* Card-Specific Grid Span */
-        
-        /* Card 1 (Profile) - Unchanged */
         .card-profile {
             grid-column: span 2;
             grid-row: span 3;
@@ -75,67 +73,34 @@
             color: var(--color-card-bg); 
         }
         
-        /* Text Color adjustments for background image */
-        .card-profile .profile-name, 
-        .card-profile .profile-details,
-        .card-profile .social-links a {
-            color: var(--color-card-bg); 
-        }
         .card-profile .profile-name {
             color: var(--color-secondary-accent); 
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); 
+            font-weight: 700;
+            font-size: 1.5rem;
         }
-        .card-profile .social-links a:hover {
-            color: var(--color-secondary-accent); 
-        }
+
         .card-profile::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            top: 0; left: 0; right: 0; bottom: 0;
             background-color: rgba(0, 0, 0, 0.25); 
             border-radius: var(--border-radius);
             z-index: 1;
         }
-        .card-profile > * {
-            z-index: 2;
-            position: relative; 
-        }
+
+        .card-profile > * { z-index: 2; position: relative; }
         
-        /* Other Card Spans (Unchanged) */
         .card-location { grid-column: span 2; grid-row: span 1; }
         .card-tech-stack { grid-column: span 1; grid-row: span 2; }
         .card-case-study { grid-column: span 1; grid-row: span 2; }
         .card-reflection { grid-column: span 1; grid-row: span 1; }
         .card-hobby { grid-column: span 1; grid-row: span 1; }
 
-        /* Card 7 (Playlist): WIDER BOX (2 rows high, 4 columns wide, at the bottom) */
         .card-playlist {
-            grid-column: 1 / -1; /* Span all 4 columns */
-            grid-row: span 2; /* Increased from 1 to 2 rows */
-            /* Allows for more content vertically in the player interface */
+            grid-column: 1 / -1; 
+            grid-row: span 2; 
         }
-        
-        /* Playlist Card specific styles */
-        .playlist-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            /* Added padding-top to separate content from title */
-            padding-top: 10px; 
-            /* Added flex-direction column for better mobile stacking */
-            flex-direction: row; 
-        }
-
-        /* Updated content to utilize space better */
-        .playlist-info {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
 
         /* --- Typography and Content Styling --- */
         .card-title {
@@ -150,41 +115,41 @@
             color: var(--color-text-secondary);
             line-height: 1.6;
         }
-        /* ... other typography styles (unchanged) ... */
         
-        /* List styles */
         .subject-list { list-style: none; padding: 0; }
         .subject-list li { padding: 5px 0; border-bottom: 1px solid var(--color-background); display: flex; align-items: center; }
         .subject-list li::before { content: '•'; color: var(--color-accent); font-weight: bold; display: inline-block; width: 1em; margin-left: -1em; }
-        
-        /* Button and Link Styles */
-        .music-placeholder, 
-        a[href]:not(.social-links a) {
-            background-color: var(--color-accent); 
-            color: var(--color-card-bg) !important;
-            padding: 10px 20px;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
+
+        /* --- NEW BUTTON STYLES --- */
+        .lab-timer-btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 12px 18px;
+            background-color: var(--color-accent);
+            color: #FFFFFF !important;
             text-decoration: none;
-            transition: background-color 0.2s;
-        }
-        
-        .music-placeholder:hover,
-        a[href]:not(.social-links a):hover {
-             background-color: var(--color-secondary-accent);
-        }
-        
-        /* Specific link adjustments for non-button links */
-        a[href]:not(.social-links a) {
-            background-color: transparent;
-            color: var(--color-accent) !important;
-            padding: 0;
-            display: inline;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(52, 152, 219, 0.2);
         }
 
+        .lab-timer-btn:hover {
+            background-color: var(--color-secondary-accent);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(46, 204, 113, 0.3);
+        }
 
-        /* --- Mobile Responsiveness (Rule 2) --- */
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            margin-right: 15px;
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Responsiveness */
         @media (max-width: 768px) {
             .bento-grid {
                 grid-template-columns: 1fr; 
@@ -193,15 +158,6 @@
             .bento-card {
                 grid-column: span 1 !important;
                 grid-row: span 1 !important;
-            }
-            .card-profile {
-                min-height: 250px; 
-            }
-            /* Adjust playlist content stacking on mobile */
-            .card-playlist .playlist-content {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px;
             }
         }
 
@@ -242,48 +198,47 @@
         </div>
 
         <div class="bento-card card-tech-stack">
-            <div class="card-title">Core Subjects & Skills</div>
+            <div class="card-title">Core Subjects</div>
             <ul class="subject-list card-content">
-                <li>Food Chemistry (Fundamental)</li>
-                <li>Microbiology (Lab Practices)</li>
-                <li>Advanced Excel for Data</li>
-                <li>Basic Lab Analysis Techniques</li>
+                <li>Food Chemistry</li>
+                <li>Microbiology</li>
+                <li>Advanced Excel</li>
+                <li>Lab Analysis</li>
             </ul>
         </div>
 
         <div class="bento-card card-case-study">
-            <div class="card-title">Starch Gelatinization in Local Kuih</div>
-            <div class="card-content">
-                **Description:** Analyzing texture profiles and structural changes of **Kuih Lapis** during cooking to optimize chewiness and shelf-stability.
-                <br><br>
-                **Status:** Data Collection Phase.
-                <a href="#" style="color: var(--color-accent); text-decoration: none; font-weight: 500;">Read Abstract →</a>
+            <div>
+                <div class="card-title">Starch Gelatinization</div>
+                <div class="card-content">
+                    Analyzing **Kuih Lapis** structural changes to optimize shelf-stability.
+                </div>
+            </div>
+            <div>
+                <a href="https://s80082.github.io/lab-timer-app/index.html" class="lab-timer-btn" target="_blank">
+                    🔬 Try My Lab Timer App
+                </a>
             </div>
         </div>
         
         <div class="bento-card card-reflection">
-            <div class="card-title">Why Food Tech Matters in Malaysia</div>
+            <div class="card-title">Food Security</div>
             <div class="card-content">
-                Sustainable food security is crucial for our future. By optimizing local processing methods, we can reduce waste and improve nutrition.
+                Optimizing local processing to reduce waste and improve nutrition in Malaysia.
             </div>
         </div>
 
         <div class="bento-card card-hobby">
             <div class="card-title">Campus Activity</div>
             <div class="card-content">
-                **Hobby:** Evening walks and beach cleanup sessions at **Pantai UMT**.
+                Beach cleanup sessions at **Pantai UMT**.
             </div>
         </div>
         
         <div class="bento-card card-playlist">
-            <div class="card-title">Focus Playlist (Integrated Player Display)</div>
+            <div class="card-title">Focus Playlist</div>
             <div class="playlist-content">
-                               
-                    <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/3AWDeHLc88XogCaCnZQLVI?utm_source=generator" width="100%" height="270" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-               
-            </div>
-            <div style="font-size: 0.8rem; color: var(--color-text-secondary); margin-top: 15px;">
-                --- Visualization Bar Placeholder ---
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3AWDeHLc88XogCaCnZQLVI?utm_source=generator" width="100%" height="230" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
             </div>
         </div>
 
